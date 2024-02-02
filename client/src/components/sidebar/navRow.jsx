@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-
 const NavRow = ({ text, iconColor, icon, url,iconType }) => {
   return (
     <li>
