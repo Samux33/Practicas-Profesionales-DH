@@ -1,12 +1,18 @@
-import SideBar from "./components/sidebar";
+import SideBar from "./components/sidebar/sidebar";
 
 function App() {
-
   return (
     <body>
+      <SideBar />
       <header></header>
       <main>
-        <SideBar />
+        <section></section>
+        <article></article>
+        <article></article>
+        <article></article>
+        <article></article>
+        <article></article>
+        <section></section>
       </main>
     </body>
   );
