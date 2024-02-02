@@ -14,9 +14,15 @@ const SideBar = () => {
           <li>
             <a href=""><i className="fa-solid fa-user"></i> - Aspirantes</a>
           </li>
-          <li></li>
-          <li></li>
-          <li></li>
+          <li>
+            <a href=""><i className="fa-solid fa-list-check"></i> - Profesiones</a>
+          </li>
+          <li>
+            <a href=""><i className="fa-solid fa-address-card"></i> - Postulate aquí</a>
+          </li>
+          <li>
+            <a href=""><i className="fa-solid fa-comment-dots"></i> - Contacto</a>
+          </li>
         </ul>
       </nav>
     </aside>
