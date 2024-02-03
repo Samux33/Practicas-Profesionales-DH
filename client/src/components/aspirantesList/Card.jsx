@@ -8,7 +8,7 @@ const Card = () => {
     imagen: foto,
     profesión: "Administrador",
   };
-  let [person, setPerson] = useState(prueba);
+  let [person] = useState(prueba);
   return (
     <article className="flex flex-col gap-2 shadow-xl h-80 p-3 md:w-1/2 xl:w-1/3 rounded">
       <div className="h-1/2 flex justify-center items-center rounded-full m-auto my-0 overflow-hidden">
@@ -30,7 +30,7 @@ const Card = () => {
         </a>
         <a href="">
           <button>
-            <i className="fa-regular fa-comment-dots"></i>
+            <i className="fa-regular fa-comment"></i>
           </button>
         </a>
         <a href="">

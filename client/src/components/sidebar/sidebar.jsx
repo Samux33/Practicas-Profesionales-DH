@@ -2,7 +2,7 @@ import DHlogo from "../../assets/logo-dh.png";
 import NavRow from "./NavRow";
 const SideBar = () => {
   return (
-    <aside className="flex flex-col bg-white border-r h-screen w-1/4 max-w-60">
+    <aside className="flex flex-col bg-white border-r h-screen w-2/5 max-w-72 ">
       <section className="flex max-w-full justify-start gap-2 p-6 items-center mb-12">
         <img
           src={DHlogo}

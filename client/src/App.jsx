@@ -2,7 +2,9 @@ import SideBar from "./components/sidebar/sidebar";
 import Header from "./components/header/Header";
 import Info from "./components/info/Info";
 import Banner from "./assets/banner.jpg";
-import List from "./components/aspirantsList/List";
+import AspirantesList from "./components/aspirantesList/AspirantesList";
+import Title from "./components/title/Title"
+import ProfesionesTable from "./components/profesionesTable/ProfesionesTable";
 function App() {
   return (
     <body className="flex">
@@ -15,10 +17,10 @@ function App() {
             text="Encontramos talento para tu empresa, en todos los cargos administrativos, profesionales y técnicos"
             img={Banner}
           ></Info>
-          <h2 className="text-gray-400 font-semibold block text-4xl">
-            Aspirantes
-          </h2>
-          <List></List>
+          <Title text="Aspirantes"></Title>
+          <AspirantesList></AspirantesList>
+          <Title text="Profesiones"></Title>
+          <ProfesionesTable></ProfesionesTable>
         </main>
       </div>
     </body>

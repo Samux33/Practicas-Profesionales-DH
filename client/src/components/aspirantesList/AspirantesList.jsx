@@ -1,9 +1,9 @@
 import Card from "./Card";
 
 
-const List = () => {
+const AspirantesList = () => {
   return <section>
     <Card></Card>
   </section>;
 };
-export default List;
+export default AspirantesList;
