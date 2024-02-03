@@ -2,14 +2,14 @@ import DHlogo from "../../assets/logo-dh.png";
 import NavRow from "./NavRow";
 const SideBar = () => {
   return (
-    <aside className="flex flex-col bg-white border-r h-screen w-2/5 max-w-72 ">
+    <aside className="flex flex-col bg-white border-r h-screen w-2/5 max-w-72 ml-6">
       <section className="flex max-w-full justify-start gap-2 p-6 items-center mb-12">
         <img
           src={DHlogo}
           alt="logo de digital house"
           className=" w-12 h-auto"
         />
-        <h2 className=" font-bold text-xs ">Digital House</h2>
+        <h2 className=" font-bold text-sm">Digital House</h2>
       </section>
       <nav className="pl-10 flex flex-col gap-3">
         <h2 className="text-blue-500 font-semibold">OPCIONES</h2>
