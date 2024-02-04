@@ -74,6 +74,7 @@ module.exports = (sequelize, DataTypes) => {
         formattedAspirante.profesiones = formattedAspirante.profesiones.map(
           (e) => e.nombre
         );
+        formattedAspirante.imagen=`http://localhost:${process.env.PORT}/images/${aspirante.imagen}`
         return formattedAspirante;
       });
     });
