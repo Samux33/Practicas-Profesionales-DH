@@ -1,13 +1,7 @@
-const { API_URL } = import.meta.env;
-
+const {VITE_API_URL} = import.meta.env;
 export const getAspirantes = () => {
-  return fetch(`${API_URL}/aspirantes`)
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error(`Error en la petición: ${res.statusText}`);
-      }
-      return res.json();
-    })
+  return fetch(`${VITE_API_URL}/aspirantes`)
+    .then((res) => res.json())
     .catch((error) => {
       console.error("Error al obtener los aspirantes:", error);
       throw error;

@@ -1,22 +1,8 @@
 import Card from "./Card";
-import { useState, useEffect } from "react";
-//import { getAspirantes } from "../../services/getAspirantes";
+import { useAspirantes } from "../../hooks/useAspirantes";
 
 const AspirantesList = () => {
-  let [aspirantes, setAspirantes] = useState([]);
-
-  useEffect(() => {
-    fetch(`http://localhost:4000/aspirantes`)
-      .then((res) => res.json())
-      .then((data) => setAspirantes(data))
-      .catch((error) => {
-        console.error("Error al obtener los aspirantes:", error);
-        throw error;
-      });
-    /*     getAspirantes().then((res) => {
-      setAspirantes(res.data);
-    }); */
-  }, []);
+  const aspirantes = useAspirantes();
   return (
     <section>
       {aspirantes.map((person) => (
