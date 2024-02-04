@@ -42,3 +42,4 @@ Card.propTypes = {
 };
 
 export default Card;
+// TODO actualizar los href de los botones para que reciba de las props las url del aspirante

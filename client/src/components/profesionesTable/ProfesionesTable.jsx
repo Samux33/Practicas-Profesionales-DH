@@ -1,4 +1,8 @@
+import TableRow from "./TableRow";
+import { useProfesiones } from "../../hooks/useProfesiones";
 const ProfesionesTable = () => {
+  const profesiones=useProfesiones()
+
   return (
     <section className="shadow p-4 rounded-md">
       <div className="flex flex-col gap-5">
@@ -6,30 +10,9 @@ const ProfesionesTable = () => {
           Listado de Profesiones
         </h3>
         <ul className="flex flex-col items-center">
-          <li className=" border-b block w-full text-center py-1 bg-white ">
-            Abogado
-          </li>
-          <li className=" border-b block w-full text-center py-1 bg-white ">
-            Arquitecto
-          </li>
-          <li className=" border-b block w-full text-center py-1 bg-white ">
-            Botánico
-          </li>
-          <li className=" border-b block w-full text-center py-1 bg-white ">
-            Programador
-          </li>
-          <li className=" border-b block w-full text-center py-1 bg-white ">
-            Economista
-          </li>
-          <li className=" border-b block w-full text-center py-1 bg-white ">
-            Técnico de Sonido
-          </li>
-          <li className=" border-b block w-full text-center py-1 bg-white ">
-            Profesor
-          </li>
-          <li className=" border-b block w-full text-center py-1 bg-white ">
-            Lingüista
-          </li>
+          {profesiones.map((name, i) => (
+            <TableRow key={i} name={name} />
+          ))}
         </ul>
       </div>
     </section>
