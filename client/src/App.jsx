@@ -3,11 +3,11 @@ import Header from "./components/header/Header";
 import Info from "./components/info/Info";
 import Banner from "./assets/banner.jpg";
 import AspirantesList from "./components/aspirantesList/AspirantesList";
-import Title from "./components/title/Title"
+import Title from "./components/title/Title";
 import ProfesionesTable from "./components/profesionesTable/ProfesionesTable";
 function App() {
   return (
-    <body className="flex">
+    <main className="flex">
       <SideBar />
       <div className="flex flex-col">
         <Header></Header>
@@ -23,7 +23,7 @@ function App() {
           <ProfesionesTable></ProfesionesTable>
         </main>
       </div>
-    </body>
+    </main>
   );
 }
 

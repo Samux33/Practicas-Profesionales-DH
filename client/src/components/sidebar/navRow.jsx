@@ -14,7 +14,7 @@ NavRow.propTypes = {
   text: PropTypes.string.isRequired,
   iconColor: PropTypes.string,
   icon: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string,
   iconType: PropTypes.string
 };
 
