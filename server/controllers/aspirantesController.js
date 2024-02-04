@@ -6,7 +6,6 @@ const aspirantesController = {
     const result = await db.Aspirante.findAllFormatted();
     res.json(result);
   },
-  create: async (req, res) => {},
 };
 
 module.exports = aspirantesController;

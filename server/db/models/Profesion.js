@@ -28,5 +28,13 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     });
   };
+  Profesion.findAllFormatted = () => {
+    return Profesion.findAll().then((result) => {
+      return result.map((prof) => {
+        let formattedProf = prof.nombre;
+        return formattedProf;
+      });
+    });
+  };
   return Profesion;
 };
