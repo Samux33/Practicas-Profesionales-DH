@@ -1,5 +1,5 @@
 import Card from "./Card";
-import { useAspirantes } from "../../hooks/useAspirantes";
+import { useAspirantes } from "../hooks/useAspirantes";
 
 const AspirantesList = () => {
   const aspirantes = useAspirantes();

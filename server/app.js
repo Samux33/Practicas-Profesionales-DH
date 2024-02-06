@@ -9,7 +9,7 @@ const aspirantesRouter = require("./routes/aspirantesRouter.js");
 const profesionesRouter = require("./routes/profesionesRouter.js");
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static("upload"));
 
 app.use("/aspirantes", aspirantesRouter);
 app.use("/profesiones", profesionesRouter);

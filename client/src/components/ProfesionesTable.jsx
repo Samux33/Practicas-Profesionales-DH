@@ -1,5 +1,5 @@
-import TableRow from "./TableRow";
-import { useProfesiones } from "../../hooks/useProfesiones";
+import TableRow from "./profesionesTable/TableRow";
+import { useProfesiones } from "../hooks/useProfesiones";
 const ProfesionesTable = () => {
   const profesiones=useProfesiones()
 

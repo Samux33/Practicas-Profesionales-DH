@@ -6,6 +6,10 @@ const aspirantesController = {
     const result = await db.Aspirante.findAllFormatted();
     res.json(result);
   },
+  create:(req,res)=>{
+    const newApplicant = req.body
+    db.Aspirante.create(newApplicant)
+  }
 };
 
 module.exports = aspirantesController;

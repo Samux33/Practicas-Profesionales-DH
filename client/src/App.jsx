@@ -5,6 +5,7 @@ import Banner from "./assets/banner.jpg";
 import AspirantesList from "./components/aspirantesList/AspirantesList";
 import Title from "./components/title/Title";
 import ProfesionesTable from "./components/profesionesTable/ProfesionesTable";
+
 function App() {
   return (
     <main className="flex">
