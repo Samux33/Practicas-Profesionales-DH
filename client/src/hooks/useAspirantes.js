@@ -1,11 +1,11 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getAspirantes } from "../services/getAspirantes";
 
-export function useAspirantes(){
+export function useAspirantes() {
   let [aspirantes, setAspirantes] = useState([]);
 
   useEffect(() => {
-    getAspirantes().then(aspirante => setAspirantes(aspirante));
+    getAspirantes().then((aspirante) => setAspirantes(aspirante.data));
   }, []);
-  return aspirantes
+  return aspirantes;
 }

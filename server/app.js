@@ -7,6 +7,7 @@ const cors = require("cors");
 
 const aspirantesRouter = require("./routes/aspirantesRouter.js");
 const profesionesRouter = require("./routes/profesionesRouter.js");
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static("upload"));

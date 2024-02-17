@@ -1,7 +1,7 @@
-import TableRow from "./profesionesTable/TableRow";
+import TableRow from "./TableRow";
 import { useProfesiones } from "../hooks/useProfesiones";
 const ProfesionesTable = () => {
-  const profesiones=useProfesiones()
+  const profesiones = useProfesiones();
 
   return (
     <section className="shadow p-4 rounded-md">

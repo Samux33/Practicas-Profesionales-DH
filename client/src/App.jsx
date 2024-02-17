@@ -1,11 +1,10 @@
-import SideBar from "./components/sidebar/sidebar";
-import Header from "./components/header/Header";
-import Info from "./components/info/Info";
+import SideBar from "./components/sidebar";
+import Header from "./components/Header";
+import Info from "./components/Info";
 import Banner from "./assets/banner.jpg";
-import AspirantesList from "./components/aspirantesList/AspirantesList";
-import Title from "./components/title/Title";
-import ProfesionesTable from "./components/profesionesTable/ProfesionesTable";
-
+import AspirantesList from "./components/AspirantesList";
+import Title from "./components/Title";
+import ProfesionesTable from "./components/ProfesionesTable";
 function App() {
   return (
     <main className="flex">
