@@ -1,5 +1,5 @@
-import SideBar from "./components/sidebar/sidebar";
-import Header from "./components/header/Header";
+import SideBar from "./components/sidebar";
+import Header from "./components/Header";
 import Info from "./components/info/Info";
 import Banner from "./assets/banner.jpg";
 import AspirantesList from "./components/aspirantesList/AspirantesList";
