@@ -1,12 +1,11 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getProfesiones } from "../services/getProfesiones";
 
-export function useProfesiones(){
+export function useProfesiones() {
   const [profesiones, setProfesiones] = useState([]);
 
   useEffect(() => {
-    getProfesiones().then((result) =>setProfesiones(result));
-
+    getProfesiones().then((result) => setProfesiones(result.data));
   }, []);
-  return profesiones
+  return profesiones;
 }

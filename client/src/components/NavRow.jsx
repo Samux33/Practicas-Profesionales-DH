@@ -1,11 +1,12 @@
-import PropTypes from 'prop-types';
-const NavRow = ({ text, iconColor, icon, url,iconType }) => {
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+const NavRow = ({ text, iconColor, icon, url, iconType }) => {
   return (
     <li>
-      <a href={url} className="flex items-center gap-1">
+      <Link to={url} className="flex items-center gap-1">
         <i className={`fa-${iconType} fa-${icon} text-${iconColor}`}></i>
         <p className="text-gray-400 font-medium"> - {text}</p>
-      </a>
+      </Link>
     </li>
   );
 };
@@ -15,7 +16,7 @@ NavRow.propTypes = {
   iconColor: PropTypes.string,
   icon: PropTypes.string.isRequired,
   url: PropTypes.string,
-  iconType: PropTypes.string
+  iconType: PropTypes.string,
 };
 
 export default NavRow;
