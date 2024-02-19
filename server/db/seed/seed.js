@@ -5,30 +5,32 @@ let aspirantesData = [];
 // Función para generar un nombre aleatorio
 function generateRandomName() {
   const nombres = [
-    "Juan",
-    "María",
-    "Pedro",
-    "Ana",
-    "Luis",
-    "Laura",
-    "Carlos",
-    "Sofía",
-    "Javier",
-    "Isabel",
-    "Diego",
-    "Lucía",
-    "Miguel",
-    "Elena",
-    "José",
-    "Martín",
-    "Carmen",
-    "Pablo",
-    "Andrea",
-    "Ricardo",
+    { name: "Juan", genero: 1 },
+    { name: "María", genero: 2 },
+    { name: "Pedro", genero: 1 },
+    { name: "Ana", genero: 2 },
+    { name: "Luis", genero: 1 },
+    { name: "Laura", genero: 2 },
+    { name: "Carlos", genero: 1 },
+    { name: "Sofía", genero: 2 },
+    { name: "Javier", genero: 1 },
+    { name: "Isabel", genero: 2 },
+    { name: "Diego", genero: 1 },
+    { name: "Lucía", genero: 2 },
+    { name: "Miguel", genero: 1 },
+    { name: "Elena", genero: 2 },
+    { name: "José", genero: 1 },
+    { name: "Martín", genero: 1 },
+    { name: "Carmen", genero: 2 },
+    { name: "Pablo", genero: 1 },
+    { name: "Andrea", genero: 2 },
+    { name: "Ricardo", genero: 1 },
   ];
+  
 
-  const nombre = nombres[Math.floor(Math.random() * nombres.length)];
-  return nombre.toString();
+  const user = nombres[Math.floor(Math.random() * nombres.length)];
+
+  return user
 }
 
 function generateRandomLastName() {
@@ -86,10 +88,12 @@ function generateRandomPhone() {
 }
 
 // Función para generar una URL de LinkedIn aleatoria
-function generateRandomLinkedIn(name) {
+function generateRandomLinkedIn(nombre,apellido) {
   const url = "linkedin.com/in/";
-  const nombre = name.toLowerCase().replace(/\s/g, ""); // Genera un nombre aleatorio y lo convierte en minúsculas
-  return `${url}${nombre}`;
+  const user = `${nombre}-${apellido}`
+  .toLowerCase().replace(/\s/g, "");
+  const num=Math.floor(Math.random()*100)
+  return `${url}${user}${num}`;
 }
 
 // Función para generar una fecha de nacimiento aleatoria
@@ -109,18 +113,18 @@ function generateRandomImage() {
 
 for (let i = 0; i < 40; i++) {
   // Genera la información aleatoria
-  const nombre = generateRandomName();
+  const persona = generateRandomName();
   const apellido = generateRandomLastName();
   const aspiranteAleatorio = {
-    nombre: nombre,
+    nombre: persona.name,
     apellido: apellido,
     dni: generateRandomDNI(),
-    email: generateRandomEmail(nombre, apellido), // Aquí pasamos nombre y apellido como parámetros
+    email: generateRandomEmail(persona.name, apellido), // Aquí pasamos nombre y apellido como parámetros
     telefono: generateRandomPhone(),
-    linkedIn: generateRandomLinkedIn(nombre), // Aquí pasamos nombre como parámetro
+    linkedIn: generateRandomLinkedIn(persona.name,apellido), // Aquí pasamos nombre como parámetro
     nacimiento: generateRandomBirthdate(),
     imagen: generateRandomImage(),
-    genero_id: Math.random() < 0.5 ? 1 : 2, // Genera un género aleatorio (1 para masculino, 2 para femenino)
+    genero_id: persona.genero
   };
 
   aspirantesData.push(aspiranteAleatorio);
