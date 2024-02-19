@@ -56,6 +56,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "aspirante_id",
       otherKey: "profesion_id",
       timestamps: false,
+      onDelete:'CASCADE'
     });
     Aspirante.belongsTo(modelos.Genero, {
       as: "genero",
@@ -74,7 +75,7 @@ module.exports = (sequelize, DataTypes) => {
         formattedAspirante.profesiones = formattedAspirante.profesiones.map(
           (e) => e.nombre
         );
-        formattedAspirante.imagen=`http://localhost:${process.env.PORT}/images/${aspirante.imagen}`
+        formattedAspirante.imagen = `http://localhost:${process.env.PORT}/images/${aspirante.imagen}`;
         return formattedAspirante;
       });
     });

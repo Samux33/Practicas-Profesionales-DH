@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "profesion_id",
       otherKey: "aspirante_id",
       timestamps: false,
+      onDelete: "CASCADE",
     });
   };
   Profesion.findAllFormatted = () => {
