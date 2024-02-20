@@ -111,7 +111,9 @@ function generateRandomImage() {
   return "default.png";
 }
 
-for (let i = 0; i < 40; i++) {
+const aspirantesCantidadSeed=process.env.ASPIRANTES_CANTIDAD_SEED??40
+
+for (let i = 0; i < aspirantesCantidadSeed; i++) {
   // Genera la información aleatoria
   const persona = generateRandomName();
   const apellido = generateRandomLastName();
