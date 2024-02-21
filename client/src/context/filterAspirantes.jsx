@@ -3,9 +3,9 @@ import { createContext, useState } from "react";
 export const FiltersContext = createContext();
 
 export function FiltersProvider({ children }) {
-  const [filters, setFilters] = useState("");
+  const [filter, setFilter] = useState("All");
   return (
-    <FiltersContext.Provider value={{ filters, setFilters }}>
+    <FiltersContext.Provider value={{ filter, setFilter }}>
       {children}
     </FiltersContext.Provider>
   );

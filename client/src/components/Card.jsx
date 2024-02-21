@@ -11,7 +11,9 @@ const Card = (props) => {
       </div>
       <div className="flex flex-col items-center justify-center">
         <h2 className="font-semibold ">{`${props.nombre} ${props.apellido}`}</h2>
-        <p className="font-normal  text-gray-400">{props.profesión}</p>
+        <p className="font-normal text-center text-gray-400">
+          {props.profesión}
+        </p>
       </div>
       <nav className="flex border-t justify-between pt-3 mt-3">
         <a href="">
