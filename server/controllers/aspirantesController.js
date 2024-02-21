@@ -33,9 +33,12 @@ const generateError = (error) => {
 };
 
 const aspirantesController = {
-  getAll: async (req, res) => {
+  getAspirantes: async (req, res) => {
     try {
-      const result = await db.Aspirante.findAllFormatted({});
+      const searchParam = req.query.name;
+      const result = await db.Aspirante.findAllFormatted({
+        where: [{ nombre: { [Op.like]: `%${searchParam}%` } }],
+      });
       if (!result || result.length <= 0)
         throw new Error("No se encontraron aspirantes");
       const response = generateResponse(result, "Solicitud exitosa");
@@ -49,27 +52,7 @@ const aspirantesController = {
     const newApplicant = req.body;
     db.Aspirante.create(newApplicant);
     res.json(newApplicant);
-  },
-  search: async (req, res) => {
-    try {
-      const searchParam = req.query.name;
-      const aspirantes = await db.Aspirante.findAllFormatted({
-        where: [{ nombre: { [Op.like]: `%${searchParam}%` } }],
-      });
-
-      if (aspirantes.length <= 0) {
-        throw new Error(
-          "No se encontró ningún aspirante que coincida con el criterio de búsqueda"
-        );
-      }
-
-      const response=generateResponse(aspirantes,"Búsqueda exitosa")
-      res.json(response);
-    } catch (error) {
-      const response =generateError(error)
-      res.status(500).json(response);
-    }
-  },
+  }
 };
 
 module.exports = aspirantesController;
