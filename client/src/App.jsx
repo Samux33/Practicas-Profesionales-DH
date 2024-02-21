@@ -8,7 +8,7 @@ import ProfesionesTable from "./components/ProfesionesTable";
 import { Routes, Route } from "react-router-dom";
 function App() {
   return (
-    <main className="flex">
+    <main className="cuerpo">
       <SideBar />
       <div className="flex flex-col w-full">
         <Header />
