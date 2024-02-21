@@ -1,16 +1,16 @@
 import { FiltersContext } from "../context/filterAspirantes";
 import { useProfesiones } from "../hooks/useProfesiones";
-import { useId,useContext } from "react";
+import { useId, useContext } from "react";
 
 const SelectProfesion = () => {
   const { profesiones } = useProfesiones();
   const profesionInputId = useId();
-  const {filter,setFilter}=useContext(FiltersContext)
+  const { filters, setFilters } = useContext(FiltersContext);
 
-  const handleChange=(event)=>{
-    const selectedProfesion=event.target.value
-    setFilter(selectedProfesion)
-  }
+  const handleChange = (event) => {
+    const selectedProfesion = event.target.value;
+    setFilters({ ...filters, profesion: selectedProfesion });
+  };
 
   return (
     <div className="flex gap-1 grow">
@@ -24,7 +24,7 @@ const SelectProfesion = () => {
         id={profesionInputId}
         className=" w-40 h-8 pl-1 border border-gray-950 rounded-lg"
         onChange={handleChange}
-        value={filter}
+        value={filters.profesion}
       >
         <option value="All">Todos</option>
         {profesiones?.map((item) => (
@@ -36,4 +36,4 @@ const SelectProfesion = () => {
     </div>
   );
 };
-export default SelectProfesion
+export default SelectProfesion;

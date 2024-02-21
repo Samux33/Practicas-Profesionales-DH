@@ -1,17 +1,17 @@
 import Card from "./Card";
 import { useAspirantes } from "../hooks/useAspirantes";
-import { useContext } from "react";
-import { SearchContext } from "../context/searchAspirantes";
+import { useFilters } from "../hooks/useFilters";
 
 const AspirantesList = () => {
-  const { search } = useContext(SearchContext);
-  const { aspirantes, error } = useAspirantes({ search });
+  const { aspirantes, error } = useAspirantes();
+  const { filterAspirantes } = useFilters({ aspirantes });
+  const newAspirantes = filterAspirantes(aspirantes);
   return (
     <section className="grid grid-cols-[repeat(auto-fit,minmax(250px,_1fr))] w-full gap-4 place-items-center">
       {error ? (
         <h2>{error}</h2>
       ) : (
-        aspirantes.map((person) => (
+        newAspirantes?.map((person) => (
           <Card
             key={person.id}
             nombre={person.nombre}
