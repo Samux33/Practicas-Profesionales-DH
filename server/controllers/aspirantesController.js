@@ -43,6 +43,13 @@ const aspirantesController = {
             { nombre: { [Op.like]: `%${searchParam}%` } },
             { apellido: { [Op.like]: `%${searchParam}%` } },
           ],
+          // Buscar combinaciones de palabras en nombre o apellido
+            [Op.or]: [
+              { nombre: { [Op.like]: `%${searchParam.split(' ')[0]}%` } },
+              { apellido: { [Op.like]: `%${searchParam.split(' ')[0]}%` } },
+              { nombre: { [Op.like]: `%${searchParam.split(' ')[1]}%` } },
+              { apellido: { [Op.like]: `%${searchParam.split(' ')[1]}%` } },
+            ],
         },
       });
       if (!result || result.length <= 0) {
