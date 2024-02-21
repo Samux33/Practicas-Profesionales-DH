@@ -26,12 +26,13 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "profesion_id",
       otherKey: "aspirante_id",
       timestamps: false,
+      onDelete: "CASCADE",
     });
   };
   Profesion.findAllFormatted = () => {
     return Profesion.findAll().then((result) => {
       return result.map((prof) => {
-        let formattedProf = prof.nombre;
+        let formattedProf = { id: prof.id, name: prof.nombre };
         return formattedProf;
       });
     });

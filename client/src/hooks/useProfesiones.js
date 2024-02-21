@@ -7,5 +7,5 @@ export function useProfesiones() {
   useEffect(() => {
     getProfesiones().then((result) => setProfesiones(result.data));
   }, []);
-  return profesiones;
+  return {profesiones};
 }

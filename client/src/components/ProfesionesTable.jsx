@@ -1,7 +1,7 @@
 import TableRow from "./TableRow";
 import { useProfesiones } from "../hooks/useProfesiones";
 const ProfesionesTable = () => {
-  const profesiones = useProfesiones();
+  const {profesiones} = useProfesiones();
 
   return (
     <section className="shadow p-4 rounded-md w-full max-w-3xl ">
@@ -10,8 +10,8 @@ const ProfesionesTable = () => {
           Listado de Profesiones
         </h3>
         <ul className="flex flex-col items-center">
-          {profesiones.map((name, i) => (
-            <TableRow key={i} name={name} />
+          {profesiones.map((item) => (
+            <TableRow key={item.id} name={item.name} />
           ))}
         </ul>
       </div>

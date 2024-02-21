@@ -56,6 +56,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "aspirante_id",
       otherKey: "profesion_id",
       timestamps: false,
+      onDelete: "CASCADE",
     });
     Aspirante.belongsTo(modelos.Genero, {
       as: "genero",
@@ -63,8 +64,9 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
   // función para eliminar campos no necesarios y convertir a Aspirante.profesiones en un array de strings
-  Aspirante.findAllFormatted = function () {
+  Aspirante.findAllFormatted = function ({ where }) {
     return Aspirante.findAll({
+      where: where,
       include: [{ association: "profesiones" }, { association: "genero" }],
     }).then((result) => {
       return result.map((aspirante) => {
@@ -74,7 +76,7 @@ module.exports = (sequelize, DataTypes) => {
         formattedAspirante.profesiones = formattedAspirante.profesiones.map(
           (e) => e.nombre
         );
-        formattedAspirante.imagen=`http://localhost:${process.env.PORT}/images/${aspirante.imagen}`
+        formattedAspirante.imagen = `http://localhost:${process.env.PORT}/images/${aspirante.imagen}`;
         return formattedAspirante;
       });
     });

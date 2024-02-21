@@ -1,11 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getAspirantes } from "../services/getAspirantes";
+import { SearchContext } from "../context/searchAspirantes";
 
 export function useAspirantes() {
-  let [aspirantes, setAspirantes] = useState([]);
+  const {search}=useContext(SearchContext)
+  const [aspirantes, setAspirantes] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getAspirantes().then((aspirante) => setAspirantes(aspirante.data));
-  }, []);
-  return aspirantes;
+    getAspirantes({ search }).then((result) => {
+      !result.success ? setError(result.error) : setError(null);
+      setAspirantes(result.data);
+    });
+  }, [search]);
+  return { aspirantes, error };
 }

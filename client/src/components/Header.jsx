@@ -1,10 +1,12 @@
+import SelectProfesion from "./SelectProfesion";
+import FormSearch from "./FormSearch";
 const Header = () => {
   return (
     <header className="w-auto h-16 flex border-b items-center">
       <nav className="flex items-center justify-between w-full gap-2 pl-12 pr-4 h-28">
-        <div className="flex gap-0.5 items-center">
-          <i className="fa-solid fa-magnifying-glass text-blue-500 fa-lg"></i>
-          <input type="text" className="h-8 focus:bg-gray-100 p-3  " />
+        <div className="flex gap-8 items-center grow">
+          <FormSearch />
+          <SelectProfesion />
         </div>
         <ul className="flex gap-6 pr-12">
           <li>
