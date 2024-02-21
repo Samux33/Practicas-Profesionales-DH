@@ -71,14 +71,14 @@ function generateRandomDNI() {
 // Función para generar un email aleatorio
 function generateRandomEmail(nombre, apellido) {
   let namesJoined = nombre + apellido;
-  const prefix = namesJoined.toLowerCase().replace(/\s/g, ""); // Genera un nombre aleatorio y lo convierte en minúsculas
+  const prefix = namesJoined.toLowerCase().replace(/\s/g, ""); 
   const number = Math.floor(Math.random() * 100);
   return `${prefix}${number}@gmail.com`;
 }
 
 // Función para generar un teléfono aleatorio
 function generateRandomPhone() {
-  const prefix = "388"; // Prefijo telefónico para Jujuy, Argentina (puedes cambiarlo según tu país)
+  const prefix = "388"; 
   const telefono =
     prefix +
     Math.floor(Math.random() * 10000000)
@@ -93,7 +93,7 @@ function generateRandomLinkedIn(nombre,apellido) {
   const user = `${nombre}-${apellido}`
   .toLowerCase().replace(/\s/g, "");
   const num=Math.floor(Math.random()*100)
-  return `${url}${user}${num}`;
+  return `${url}${user}-${num}`;
 }
 
 // Función para generar una fecha de nacimiento aleatoria
@@ -106,10 +106,9 @@ function generateRandomBirthdate() {
     .padStart(2, "0")}/${year.toString()}`;
 }
 
-// Función para generar una imagen aleatoria
-function generateRandomImage() {
+/* function generateRandomImage() {
   return "default.png";
-}
+} */
 
 const aspirantesCantidadSeed=process.env.ASPIRANTES_CANTIDAD_SEED??40
 
@@ -125,7 +124,7 @@ for (let i = 0; i < aspirantesCantidadSeed; i++) {
     telefono: generateRandomPhone(),
     linkedIn: generateRandomLinkedIn(persona.name,apellido), // Aquí pasamos nombre como parámetro
     nacimiento: generateRandomBirthdate(),
-    imagen: generateRandomImage(),
+    imagen: 'default.png',
     genero_id: persona.genero
   };
 

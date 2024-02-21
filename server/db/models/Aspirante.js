@@ -64,7 +64,7 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
   // función para eliminar campos no necesarios y convertir a Aspirante.profesiones en un array de strings
-  Aspirante.findAllFormatted = function ({where}) {
+  Aspirante.findAllFormatted = function ({ where }) {
     return Aspirante.findAll({
       where: where,
       include: [{ association: "profesiones" }, { association: "genero" }],

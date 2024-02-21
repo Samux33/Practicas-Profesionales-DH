@@ -35,7 +35,7 @@ const generateError = (error) => {
 const aspirantesController = {
   getAll: async (req, res) => {
     try {
-      const result = await db.Aspirante.findAllFormatted();
+      const result = await db.Aspirante.findAllFormatted({});
       if (!result || result.length <= 0)
         throw new Error("No se encontraron aspirantes");
       const response = generateResponse(result, "Solicitud exitosa");
