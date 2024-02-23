@@ -37,20 +37,23 @@ const aspirantesController = {
   getAspirantes: async (req, res) => {
     try {
       const searchParam = req.query.name;
-      const result = await db.Aspirante.findAllFormatted({
-        where: {
-          [Op.or]: [
-            { nombre: { [Op.like]: `%${searchParam}%` } },
-            { apellido: { [Op.like]: `%${searchParam}%` } },
-          ],
-          // Buscar combinaciones de palabras en nombre o apellido
+      const condition = searchParam
+        ? {
             [Op.or]: [
-              { nombre: { [Op.like]: `%${searchParam.split(' ')[0]}%` } },
-              { apellido: { [Op.like]: `%${searchParam.split(' ')[0]}%` } },
-              { nombre: { [Op.like]: `%${searchParam.split(' ')[1]}%` } },
-              { apellido: { [Op.like]: `%${searchParam.split(' ')[1]}%` } },
+              { nombre: { [Op.like]: `%${searchParam}%` } },
+              { apellido: { [Op.like]: `%${searchParam}%` } },
             ],
-        },
+            // Buscar combinaciones de palabras en nombre o apellido
+            [Op.or]: [
+              { nombre: { [Op.like]: `%${searchParam.split(" ")[0]}%` } },
+              { apellido: { [Op.like]: `%${searchParam.split(" ")[0]}%` } },
+              { nombre: { [Op.like]: `%${searchParam.split(" ")[1]}%` } },
+              { apellido: { [Op.like]: `%${searchParam.split(" ")[1]}%` } },
+            ],
+          }
+        : {};
+      const result = await db.Aspirante.findAllFormatted({
+        where: condition,
       });
       if (!result || result.length <= 0) {
         const error = generateError({
