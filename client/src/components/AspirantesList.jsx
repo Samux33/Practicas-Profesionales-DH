@@ -7,7 +7,7 @@ const AspirantesList = () => {
   const { filterAspirantes } = useFilters({ aspirantes });
   const newAspirantes = filterAspirantes(aspirantes);
   return (
-    <section className="grid grid-cols-[repeat(auto-fit,minmax(250px,_1fr))] w-full gap-4 place-items-center">
+    <section className="grid grid-cols-[repeat(auto-fit,minmax(200px,_1fr))] w-full gap-4 place-items-center">
       {error ? (
         <h2>{error}</h2>
       ) : (
