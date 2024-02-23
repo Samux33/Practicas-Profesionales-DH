@@ -1,3 +1,4 @@
+// Componentes
 import SideBar from "./components/sidebar";
 import Header from "./components/Header";
 import About from "./components/About";
@@ -5,8 +6,12 @@ import Banner from "./assets/banner.jpg";
 import AspirantesList from "./components/AspirantesList";
 import Title from "./components/Title";
 import ProfesionesTable from "./components/ProfesionesTable";
+import CreateAspiranteForm from "./components/CreateAspiranteForm";
+
+// Utils
 import { Routes, Route } from "react-router-dom";
 import { FiltersProvider } from "./context/filterAspirantes";
+
 function App() {
   return (
     <main className="cuerpo">
@@ -45,6 +50,7 @@ function App() {
               />
               <Route path="/aspirantes" element={<AspirantesList />} />
               <Route path="/profesiones" element={<ProfesionesTable />} />
+              <Route path="/form" element={<CreateAspiranteForm />} />
             </Routes>
           </main>
         </FiltersProvider>

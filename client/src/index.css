@@ -18,3 +18,22 @@ body {
     grid-template-columns: 18rem auto;
   }
 }
+
+.inputForm {
+  transition: ease 0.1s;
+  z-index: 1111;
+}
+.inputForm:focus,
+.inputForm:valid {
+  color: rgb(79 70 229);
+  border: 2px solid rgb(79 70 229);
+}
+
+.inputForm:focus + .labelline,
+.inputForm:valid + .labelline {
+  color: rgb(79 70 229);
+  line-height: 1.5rem;
+  height: 1.5rem;
+  transform: translate(-15px, -22px) scale(0.88);
+  z-index: 1111;
+}

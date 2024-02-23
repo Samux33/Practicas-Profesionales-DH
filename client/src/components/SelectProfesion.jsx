@@ -22,11 +22,13 @@ const SelectProfesion = () => {
       </label>
       <select
         id={profesionInputId}
-        className=" w-40 h-8 pl-1 border border-gray-950 rounded-lg"
+        className="w-40 h-8 pl-1 border border-gray-950 rounded-lg flex flex-col justify-center p-1 items-center text-center"
         onChange={handleChange}
         value={filters.profesion}
       >
-        <option value="All">Todos</option>
+        <option value="All" className="">
+          Todos
+        </option>
         {profesiones?.map((item) => (
           <option key={item.id} value={item.name}>
             {item.name}
