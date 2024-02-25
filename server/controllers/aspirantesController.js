@@ -1,6 +1,7 @@
 const { response } = require("express");
 const db = require("../db/models");
 const { Op } = db.Sequelize;
+const validateAspirante = require("../schemas/aspirante.js");
 
 const generateResponse = (result, message) => {
   const response = {
@@ -23,7 +24,7 @@ const generateError = ({ error, result, code }) => {
     success: false,
     code: code,
     message: "Error al procesar la solicitud",
-    error: error.message,
+    error: error,
     metadata: {
       version: "1.0.0",
       timestamp: new Date(),
@@ -42,13 +43,34 @@ const aspirantesController = {
             [Op.or]: [
               { nombre: { [Op.like]: `%${searchParam}%` } },
               { apellido: { [Op.like]: `%${searchParam}%` } },
-            ],
-            // Buscar combinaciones de palabras en nombre o apellido
-            [Op.or]: [
-              { nombre: { [Op.like]: `%${searchParam.split(" ")[0]}%` } },
-              { apellido: { [Op.like]: `%${searchParam.split(" ")[0]}%` } },
-              { nombre: { [Op.like]: `%${searchParam.split(" ")[1]}%` } },
-              { apellido: { [Op.like]: `%${searchParam.split(" ")[1]}%` } },
+              {
+                [Op.or]: [
+                  {
+                    [Op.and]: [
+                      {
+                        nombre: { [Op.like]: `%${searchParam.split(" ")[0]}%` },
+                      },
+                      {
+                        apellido: {
+                          [Op.like]: `%${searchParam.split(" ")[1]}%`,
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    [Op.and]: [
+                      {
+                        apellido: {
+                          [Op.like]: `%${searchParam.split(" ")[0]}%`,
+                        },
+                      },
+                      {
+                        nombre: { [Op.like]: `%${searchParam.split(" ")[1]}%` },
+                      },
+                    ],
+                  },
+                ],
+              },
             ],
           }
         : {};
@@ -57,10 +79,8 @@ const aspirantesController = {
       });
       if (!result || result.length <= 0) {
         const error = generateError({
-          error: {
-            message:
-              "No se encontraron aspirantes que coincidan con el criterio de búsqueda",
-          },
+          error:
+            "No se encontraron aspirantes que coincidan con el criterio de búsqueda",
           result: [],
           code: 404,
         });
@@ -69,14 +89,37 @@ const aspirantesController = {
       const response = generateResponse(result, "Solicitud exitosa");
       res.json(response);
     } catch (error) {
-      const response = generateError({ error, code: 500, result: [] });
+      const response = generateError({
+        error: error.message,
+        code: 500,
+        result: [],
+      });
       res.status(500).json(response);
     }
   },
   create: async (req, res) => {
-    const newApplicant = req.body;
-    db.Aspirante.create(newApplicant);
-    res.json(newApplicant);
+    try {
+      const newAspirante = req.body;
+      console.log(req.body);
+      const validationResult = validateAspirante(newAspirante);
+      if (validationResult.error) {
+        const response = generateError({
+          error: JSON.parse(validationResult.error),
+          code: 400,
+        });
+        res.status(400).json(response);
+      } else {
+        await db.Aspirante.create(newAspirante);
+        const result = generateResponse({
+          result: newAspirante,
+          message: "Aspirante creado exitosamente",
+        });
+        res.json(result);
+      }
+    } catch (error) {
+      console.error("Error al crear el aspirante: ", error);
+      res.status(500).json({ error: "Error interno del servidor" });
+    }
   },
 };
 
