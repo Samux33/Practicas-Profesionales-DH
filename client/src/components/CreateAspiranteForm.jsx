@@ -3,8 +3,27 @@ import InputForm from "./InputForm";
 import DateInput from "./InputDate";
 
 export default function CreateAspiranteForm() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = Object.fromEntries(new FormData(event.target));
+    fetch("http://localhost:4000/aspirantes/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Indica que estás enviando datos en formato JSON en el cuerpo de la solicitud
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((data) => console.log(data))
+      .catch((error) => {
+        console.log("Hubo un error: ", error);
+      });
+  };
   return (
-    <form className=" w-full flex flex-col gap-5 justify-center">
+    <form
+      onSubmit={handleSubmit}
+      className=" w-full flex flex-col gap-5 justify-center"
+      method="POST"
+    >
       <h2 className="text-base font-semibold leading-7 text-gray-900 self-center">
         Crea tu Perfil
       </h2>
@@ -12,15 +31,32 @@ export default function CreateAspiranteForm() {
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 items-center gap-8 w-full">
           <InputForm
             type="text"
+            name="nombre"
             placeholder="Ingresa tu Nombre"
             error="El nombre es requerido"
           />
-          <InputForm type="text" placeholder="Ingresa tu Apellido" />
-          <InputForm type="number" placeholder="Ingresa tu DNI" />
-          <InputForm type="email" placeholder="Ingresa tu Email" />
-          <InputForm type="number" placeholder="Ingresa tu Telefono" />
-          <InputForm type="text" placeholder="Ingresa tu LinkedIn" />
-          <DateInput type="date" placeholder="Fecha de Nacimiento" />
+          <InputForm
+            name="apellido"
+            type="text"
+            placeholder="Ingresa tu Apellido"
+          />
+          <InputForm name="dni" type="number" placeholder="Ingresa tu DNI" />
+          <InputForm name="email" type="text" placeholder="Ingresa tu Email" />
+          <InputForm
+            name="telefono"
+            type="number"
+            placeholder="Ingresa tu Telefono"
+          />
+          <InputForm
+            name="linkedIn"
+            type="text"
+            placeholder="Ingresa tu LinkedIn"
+          />
+          <DateInput
+            name="nacimiento"
+            type="date"
+            placeholder="Fecha de Nacimiento"
+          />
           <div className="flex items-center flex-col">
             <select
               defaultValue="Genero"

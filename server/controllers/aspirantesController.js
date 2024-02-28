@@ -100,7 +100,6 @@ const aspirantesController = {
   create: async (req, res) => {
     try {
       const newAspirante = req.body;
-      console.log(req.body);
       const validationResult = validateAspirante(newAspirante);
       if (validationResult.error) {
         const response = generateError({
