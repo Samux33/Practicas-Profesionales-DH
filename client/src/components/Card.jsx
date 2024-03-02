@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 const Card = (props) => {
   return (
     <article className="flex flex-col gap-2 shadow-xl h-80 p-3 w-full rounded max-w-80">
@@ -34,13 +33,6 @@ const Card = (props) => {
       </nav>
     </article>
   );
-};
-
-Card.propTypes = {
-  nombre: PropTypes.string.isRequired,
-  apellido: PropTypes.string.isRequired,
-  profesión: PropTypes.string.isRequired,
-  imagen: PropTypes.string.isRequired,
 };
 
 export default Card;

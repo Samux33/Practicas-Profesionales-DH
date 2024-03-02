@@ -5,7 +5,6 @@ export function useFilters() {
   const { filters } = useContext(FiltersContext);
 
   const filterAspirantes = (aspirantes) => {
-    console.log("Nueva función filterAspirantes creada");
     return aspirantes.filter((aspirante) => {
       return (
         aspirante.profesiones.includes(filters.profesion) ||

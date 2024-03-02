@@ -11,11 +11,13 @@ body {
 .cuerpo {
   display: grid;
   grid-template-columns: 2fr 3fr;
+  width: 100%;
+  min-height: 100vh;
 }
 
 @media (min-width: 720px) {
   .cuerpo {
-    grid-template-columns: 18rem auto;
+    grid-template-columns: 18rem 1fr;
   }
 }
 

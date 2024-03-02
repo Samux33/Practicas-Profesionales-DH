@@ -16,7 +16,7 @@ function App() {
   return (
     <main className="cuerpo">
       <SideBar />
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-min col-span-1 lg:w-full">
         <FiltersProvider>
           <Header />
           <main className="flex flex-1 flex-col right-0 p-16 bg-gray-100 gap-4 items-center">

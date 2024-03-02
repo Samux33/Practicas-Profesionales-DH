@@ -1,19 +1,26 @@
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 import InputForm from "./InputForm";
 import DateInput from "./InputDate";
+import { useState } from "react";
 
 export default function CreateAspiranteForm() {
+  const [error, setError] = useState();
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = Object.fromEntries(new FormData(event.target));
     fetch("http://localhost:4000/aspirantes/create", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json", // Indica que estás enviando datos en formato JSON en el cuerpo de la solicitud
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     })
-      .then((data) => console.log(data))
+      .then((data) => data.json())
+      .then((response) => {
+        if (!response.success) {
+          console.log(response);
+        }
+      })
       .catch((error) => {
         console.log("Hubo un error: ", error);
       });
@@ -33,7 +40,7 @@ export default function CreateAspiranteForm() {
             type="text"
             name="nombre"
             placeholder="Ingresa tu Nombre"
-            error="El nombre es requerido"
+            error={error}
           />
           <InputForm
             name="apellido"

@@ -19,7 +19,7 @@ const generateResponse = (result, message) => {
 };
 
 const generateError = ({ error, result, code }) => {
-  console.error("Error al obtener los aspirantes:", error);
+  console.error(error);
   const response = {
     success: false,
     code: code,

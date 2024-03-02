@@ -8,7 +8,6 @@ export function useAspirantes() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("getAspirantes ejecutado");
     getAspirantes({ search }).then((result) => {
       !result.success ? setError(result.error) : setError(null);
       setAspirantes(result.data);
