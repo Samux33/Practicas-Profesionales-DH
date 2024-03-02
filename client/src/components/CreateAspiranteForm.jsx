@@ -4,7 +4,7 @@ import DateInput from "./InputDate";
 import { useState } from "react";
 
 export default function CreateAspiranteForm() {
-  const [error, setError] = useState();
+  const [formError, setFormError] = useState({});
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = Object.fromEntries(new FormData(event.target));
@@ -18,7 +18,16 @@ export default function CreateAspiranteForm() {
       .then((data) => data.json())
       .then((response) => {
         if (!response.success) {
-          console.log(response);
+          const error = response.error;
+          console.log(error);
+          let newErrors = {};
+          error.forEach((issue) => {
+            newErrors = {
+              ...newErrors,
+              [issue.path[0]]: issue.message,
+            };
+          });
+          setFormError(newErrors);
         }
       })
       .catch((error) => {
@@ -40,40 +49,57 @@ export default function CreateAspiranteForm() {
             type="text"
             name="nombre"
             placeholder="Ingresa tu Nombre"
-            error={error}
+            error={formError.nombre}
           />
           <InputForm
             name="apellido"
             type="text"
             placeholder="Ingresa tu Apellido"
+            error={formError.apellido}
           />
-          <InputForm name="dni" type="number" placeholder="Ingresa tu DNI" />
-          <InputForm name="email" type="text" placeholder="Ingresa tu Email" />
+          <InputForm
+            name="dni"
+            type="number"
+            placeholder="Ingresa tu DNI"
+            error={formError.dni}
+          />
+          <InputForm
+            name="email"
+            type="text"
+            placeholder="Ingresa tu Email"
+            error={formError.email}
+          />
           <InputForm
             name="telefono"
             type="number"
             placeholder="Ingresa tu Telefono"
+            error={formError.telefono}
           />
           <InputForm
             name="linkedIn"
             type="text"
             placeholder="Ingresa tu LinkedIn"
+            error={formError.linkedIn}
           />
           <DateInput
             name="nacimiento"
             type="date"
             placeholder="Fecha de Nacimiento"
+            error={formError.nacimiento}
           />
           <div className="flex items-center flex-col">
             <select
               defaultValue="Genero"
-              name="genero"
+              name="genero_id"
               className="self-center px-3 leading-6 rounded-lg border-gray-700 bg-transparent max-w-80 w-full content-center"
             >
-              <option>Genero</option>
+              <option value="0">Genero</option>
               <option value="1">Masculino</option>
               <option value="2">Femenino</option>
             </select>
+            {formError.genero_id && (
+              <p className="text-red-600 mt-2">{formError.genero_id}</p>
+            )}
           </div>
         </div>
       </div>
