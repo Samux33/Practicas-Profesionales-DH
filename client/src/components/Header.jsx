@@ -3,7 +3,7 @@ import FormSearch from "./FormSearch";
 const Header = () => {
   return (
     <header className="w-auto h-16 flex border-b items-center">
-      <nav className="flex items-center justify-between w-full gap-2 pl-12 pr-4 h-28">
+      <nav className="flex items-center justify-between w-full gap-2 pl-12 pr-4">
         <div className="flex gap-8 items-center grow">
           <FormSearch />
           <SelectProfesion />
