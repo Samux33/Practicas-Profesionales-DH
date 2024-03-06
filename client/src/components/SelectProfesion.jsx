@@ -31,7 +31,7 @@ const SelectProfesion = () => {
         </option>
         {profesiones?.map((item) => (
           <option key={item.id} value={item.nombre}>
-            {item.name}
+            {item.nombre}
           </option>
         ))}
       </select>

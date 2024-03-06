@@ -3,7 +3,8 @@ const db = require("../db/models");
 
 const getProfesiones = async () => {
   const result = await db.Profesion.findAll();
-  return result;
+  const profesiones = result.map((item) => item.nombre);
+  return profesiones;
 };
 
 const profesiones = getProfesiones();
@@ -33,10 +34,8 @@ const aspiranteSchema = z
         return { message: "Debes elegir uno de los generos" };
       },
     }),
-    imagen: z
-      .string()
-      .endsWith(".png", { message: "Debes subir una imagen tipo png" }),
-    profesiones: z.array(z.enum(profesiones)),
+    imagen: z.string(),
+    profesiones: z.array(z.string(), { message: "HOLAERROR" }),
   })
   .required();
 

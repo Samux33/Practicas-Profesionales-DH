@@ -2,12 +2,38 @@ import { UserCircleIcon } from "@heroicons/react/24/solid";
 import InputForm from "./InputForm";
 import DateInput from "./InputDate";
 import { useState } from "react";
+import { useProfesiones } from "../hooks/useProfesiones";
 
 export default function CreateAspiranteForm() {
   const [formError, setFormError] = useState({});
+  const { profesiones } = useProfesiones();
+  const [profesionSeleccionada, setProfesionSeleccionada] = useState("");
+  const [profesionesSeleccionadas, setProfesionesSeleccionadas] = useState([]);
+
+  const cambiarProfesion = (event) => {
+    setProfesionSeleccionada(event.target.value);
+  };
+
+  const agregarProfesion = () => {
+    if (
+      profesionSeleccionada.trim() !== "" &&
+      profesionesSeleccionadas.indexOf(profesionSeleccionada) === -1
+    ) {
+      setProfesionesSeleccionadas([
+        ...profesionesSeleccionadas,
+        profesionSeleccionada,
+      ]);
+      setProfesionSeleccionada("");
+    }
+  };
+
+  // enviar datos a la api
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = Object.fromEntries(new FormData(event.target));
+    let formData = Object.fromEntries(new FormData(event.target));
+    formData.profesiones = profesionesSeleccionadas;
+    console.log("estado de profesiones: ", profesionesSeleccionadas);
+    console.log("data en form de profesiones: ", formData.profesiones);
     fetch("http://localhost:4000/aspirantes/create", {
       method: "POST",
       headers: {
@@ -18,8 +44,9 @@ export default function CreateAspiranteForm() {
       .then((data) => data.json())
       .then((response) => {
         if (!response.success) {
+          console.log(response);
           const error = response.error;
-          console.log(error);
+          console.log("ACA ERROR".error);
           let newErrors = {};
           error.forEach((issue) => {
             newErrors = {
@@ -41,9 +68,9 @@ export default function CreateAspiranteForm() {
       method="POST"
     >
       <h2 className="text-base font-semibold leading-7 text-gray-900 self-center">
-        Crea tu Perfil
+        Crea un Aspirante
       </h2>
-      <div className="border-b border-gray-900/10 pb-12 w-full flex">
+      <div className="border-b border-gray-900/10 pb-12 w-full flex flex-col gap-8">
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 items-center gap-8 w-full">
           <InputForm
             type="text"
@@ -101,6 +128,31 @@ export default function CreateAspiranteForm() {
               <p className="text-red-600 mt-2">{formError.genero_id}</p>
             )}
           </div>
+        </div>
+        <div className="self-center flex flex-col">
+          <div className="self-center">
+            <label htmlFor="profesion">Profesión:</label>
+            <input
+              type="text"
+              id="profesion"
+              value={profesionSeleccionada}
+              onChange={cambiarProfesion}
+              list="profesiones-list"
+            />
+            <datalist id="profesiones-list">
+              {profesiones.map((profesion) => (
+                <option key={profesion.id} value={profesion.nombre} />
+              ))}
+            </datalist>
+            <button type="button" onClick={agregarProfesion}>
+              Agregar
+            </button>
+          </div>
+          <ul>
+            {profesionesSeleccionadas.map((profesion, i) => (
+              <li key={i}>{profesion}</li>
+            ))}
+          </ul>
         </div>
       </div>
 

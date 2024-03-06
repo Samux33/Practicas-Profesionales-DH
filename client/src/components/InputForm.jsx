@@ -5,6 +5,7 @@ const InputForm = ({ type, placeholder, name, onBlur, onFocus, error }) => {
         <input
           type={type}
           required
+          autoComplete="true"
           name={name}
           className="outline-none absolute px-3 leading-6 rounded-lg border-gray-700 bg-transparent inputForm max-w-80 w-full"
           onFocus={onFocus}
