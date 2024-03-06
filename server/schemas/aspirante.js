@@ -26,7 +26,7 @@ const aspiranteSchema = z
       .min(7, { message: "Tu telefono debe ser de al menos 7 caracteres" })
       .max(15, { message: "Tu telefono debe ser de máximo 15 caracteres" }),
     linkedIn: z.string().url({ message: "Debes ingresar una url valida" }),
-    nacimiento: z.date({
+    nacimiento: z.string({
       invalid_type_error: "Debes ingresar una fecha valida",
     }),
     genero_id: z.nativeEnum(["1", "2"], {
@@ -34,8 +34,9 @@ const aspiranteSchema = z
         return { message: "Debes elegir uno de los generos" };
       },
     }),
-    imagen: z.string(),
-    profesiones: z.array(z.string(), { message: "HOLAERROR" }),
+    profesiones: z.array(z.string(), {
+      message: "Debes elegir una profesion de la lista",
+    }),
   })
   .required();
 

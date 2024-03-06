@@ -100,6 +100,9 @@ const aspirantesController = {
   create: async (req, res) => {
     try {
       const newAspirante = req.body;
+      const file = req.file;
+      newAspirante.imagen = file?.filename;
+      newAspirante.profesiones = newAspirante.profesiones.split(",");
       const validationResult = validateAspirante(newAspirante);
       if (validationResult.error) {
         const response = generateError({
@@ -108,7 +111,16 @@ const aspirantesController = {
         });
         res.status(400).json(response);
       } else {
-        await db.Aspirante.create(newAspirante);
+        const aspiranteCreado = await db.Aspirante.create(newAspirante);
+        const profesionesNombres = newAspirante.profesiones
+        const profesiones = await db.Profesion.findAll({
+          where: { nombre: profesionesNombres },
+        });
+        const aspirante_profesiones = profesiones.map((profesion) => ({
+          aspirante_id: aspiranteCreado.id,
+          profesion_id: profesion.id,
+        }));
+        await db.AspiranteProfesion.bulkCreate(aspirante_profesiones);
         const result = generateResponse({
           result: newAspirante,
           message: "Aspirante creado exitosamente",
