@@ -16,7 +16,7 @@ body {
 }
 
 .div-main {
-  width: 75vw;
+  width: 100%;
 }
 
 @media (min-width: 720px) {
